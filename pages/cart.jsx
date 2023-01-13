@@ -83,7 +83,7 @@ const Cart = () => {
               createOrder({
                 customer: shipping.name.full_name,
                 address: shipping.address.address_line_1,
-                total: cart.total,
+                total: total,
                 method: 1,
               });
             });
@@ -169,7 +169,7 @@ const Cart = () => {
               <PayPalScriptProvider
                 options={{
                   "client-id":
-                    "AeGA_4p9p0V-Y1JjE2JKWogFfCP0nMrmhiMbaWO2wHypTDfN4Pv8QIJpKXe_M7CJZF8UfhMUs9OQZ5zL",
+                    "AWdnmNMRiZG1qSNO3_uFFM_uhjAViCM8iH9d7XyUmGguzouEb5up22zRNxvGMmn7KJeZJkPXhCh-NBu8",
                   components: "buttons",
                   currency: "USD",
                   "disable-funding": "credit,card,p24",

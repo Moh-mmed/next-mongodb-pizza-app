@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/dbConnect";
 import Order from "../../../models/Order";
 
 const handler = async (req, res) => {
@@ -9,18 +9,26 @@ const handler = async (req, res) => {
   if (method === "GET") {
     try {
       const orders = await Order.find();
-      res.status(200).json(orders);
-    } catch (err) {
-      res.status(500).json(err);
+      return res.status(200).json({
+        status: "success",
+        message: "All orders have been fetched successfully",
+        data: orders,
+      });
+    } catch (error) {
+      return res.status(500).json({ status: "fail", message: error });
     }
   }
   if (method === "POST") {
-    try {
-      const order = await Order.create(req.body);
-      res.status(201).json(order);
-    } catch (err) {
-      res.status(500).json(err);
-    }
+     try {
+       const order = await Order.create(req.body);
+       return res.status(201).json({
+         status: "success",
+         message: "Order created successfully!",
+         data: order,
+       });
+     } catch (error) {
+       return res.status(500).json({ status: "fail", message: error });
+     }
   }
 };
 

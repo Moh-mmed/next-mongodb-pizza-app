@@ -98,8 +98,6 @@ const Product = ({data}) => {
   );
 };
 
-export default Product;
-
 export const getServerSideProps = async (context) => {
   const { query} = context
   const res = await axios.get(`http://localhost:3000/api/products/${query.id}`);
@@ -109,3 +107,6 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+export default Product;
+
