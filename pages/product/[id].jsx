@@ -33,7 +33,7 @@ const Product = ({data}) => {
   }
 
   const handleAddToCart = () => {
-    dispatch(addProduct({product, price, quantity}))
+    dispatch(addProduct({product, price, options, quantity}))
   }
 
   return (
