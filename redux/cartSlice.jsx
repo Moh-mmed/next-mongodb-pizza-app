@@ -1,9 +1,87 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// const initialState = {
+//     products: [],
+//     quantity: 0,
+//     total: 0,
+// };
+
 const initialState = {
-    products: [],
-    quantity: 0,
-    total: 0,
+  products: [
+    {
+      product: {
+        _id: "63c00792d856de780c27aeff",
+        title: "Pizza one",
+        desc: "A delicious pizza",
+        img: "pizza.png",
+        prices: [18, 22, 26],
+        extraOptions: [
+          {
+            text: "Spicy sauce",
+            price: 2,
+            _id: "63c00792d856de780c27af00",
+          },
+          {
+            text: "Spicy sauce",
+            price: 3,
+            _id: "63c00792d856de780c27af01",
+          },
+        ],
+        createdAt: "2023-01-12T13:13:54.398Z",
+        updatedAt: "2023-01-12T13:13:54.398Z",
+        __v: 0,
+      },
+      price: 21,
+      options: [
+        {
+          text: "Spicy sauce",
+          price: 3,
+          _id: "63c00792d856de780c27af01",
+        },
+      ],
+      quantity: 2,
+    },
+    {
+      product: {
+        _id: "63c00792d856de780c27aeff",
+        title: "Pizza one",
+        desc: "A delicious pizza",
+        img: "pizza.png",
+        prices: [18, 22, 26],
+        extraOptions: [
+          {
+            text: "Spicy sauce",
+            price: 2,
+            _id: "63c00792d856de780c27af00",
+          },
+          {
+            text: "Spicy sauce",
+            price: 3,
+            _id: "63c00792d856de780c27af01",
+          },
+        ],
+        createdAt: "2023-01-12T13:13:54.398Z",
+        updatedAt: "2023-01-12T13:13:54.398Z",
+        __v: 0,
+      },
+      price: 23,
+      options: [
+        {
+          text: "Spicy sauce",
+          price: 3,
+          _id: "63c00792d856de780c27af01",
+        },
+        {
+          text: "Spicy sauce",
+          price: 2,
+          _id: "63c00792d856de780c27af00",
+        },
+      ],
+      quantity: 4,
+    },
+  ],
+  quantity: 2,
+  total: 134,
 };
 
 const cartSlice = createSlice({
