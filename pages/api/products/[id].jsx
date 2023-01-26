@@ -29,4 +29,18 @@ export default async function handler(req, res) {
       return res.status(500).json({ status: "fail", message: error });
     }
   }
+  
+  if (method === "DELETE") {
+    try {
+
+      await Product.findOneAndDelete(query.id);
+
+      return res.status(204).json({
+        status: "success",
+        message: "Product deleted successfully!",
+      });
+    } catch (error) {
+      return res.status(500).json({ status: "fail", message: error });
+    }
+  }
 }
