@@ -39,8 +39,8 @@ const Add = ({ setClose }) => {
       const newProduct = {
         title,
         desc,
-        // img: url,
-        img: "pizza.png",
+        img: url,
+        // img: "pizza.png",
         prices,
         extraOptions,
       };
