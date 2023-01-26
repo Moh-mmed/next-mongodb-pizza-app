@@ -25,11 +25,12 @@ const Cart = () => {
   const style = { layout: "vertical" };
 
   const createOrder = async (data) => {
+
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);
       if (res.status === 201) {
         dispatch(reset());
-        router.push(`/orders/${res.data._id}`);
+        router.push(`/orders/${res.data.data._id}`);
       }
     } catch (err) {
       console.log(err);
