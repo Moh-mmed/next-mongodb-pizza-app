@@ -31,7 +31,7 @@ const Add = ({ setClose }) => {
     data.append("upload_preset", "uploads");
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload",
+        "https://api.cloudinary.com/v1_1/dbut5ydes/image/upload",
         data
       );
 
@@ -39,9 +39,10 @@ const Add = ({ setClose }) => {
       const newProduct = {
         title,
         desc,
+        // img: url,
+        img: "pizza.png",
         prices,
         extraOptions,
-        img: url,
       };
 
       await axios.post("http://localhost:3000/api/products", newProduct);
