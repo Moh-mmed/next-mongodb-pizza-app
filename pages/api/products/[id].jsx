@@ -1,10 +1,11 @@
+import { getSession } from "next-auth/react";
 import dbConnect from "../../../lib/dbConnect";
 import Product from "../../../models/Product";
 
 export default async function handler(req, res) {
   const { method, query} = req;
   // const token = cookies.token;
-  dbConnect();
+  await dbConnect();
 
   if (method === "GET") {
     try {
@@ -20,9 +21,15 @@ export default async function handler(req, res) {
   }
 
   if (method === "POST") {
-    // if(!token || token !== process.env.token){
-    //   return res.status(401).json("Not authenticated!")
-    // }
+    // const session = await getServerSession(req, res, authOptions);
+    const session = await getSession({ req });
+
+    if (!session) {
+      res.send({
+        error: "You are not authorized for this action.",
+      });
+    }
+    
     try {
       return res.status(201).json({
         status: "success",

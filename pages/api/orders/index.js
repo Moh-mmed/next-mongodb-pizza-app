@@ -1,12 +1,22 @@
 import dbConnect from "../../../lib/dbConnect";
 import Order from "../../../models/Order";
+import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
   const { method } = req;
-
+  
   await dbConnect();
 
   if (method === "GET") {
+    // const session = await getServerSession(req, res, authOptions);
+    const session = await getSession({req});
+
+    if (!session) {
+      res.send({
+        error: "You are not authorized for this action.",
+      });
+    }
+
     try {
       const orders = await Order.find();
       return res.status(200).json({

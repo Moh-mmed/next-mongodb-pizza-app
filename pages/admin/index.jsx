@@ -1,9 +1,10 @@
+import { useState } from "react";
+import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
 
-const Index = ({ orders, products }) => {
+const Index = ({ data:{orders, products} }) => {
   const [pizzaList, setPizzaList] = useState(products.data);
   const [orderList, setOrderList] = useState(orders.data);
   const status = ["preparing", "on the way", "delivered"];
@@ -55,7 +56,7 @@ const Index = ({ orders, products }) => {
               <tr className={styles.trTitle}>
                 <td>
                   <Image
-                    src={`/img/${product.img}`}
+                    src={product.img}
                     width={50}
                     height={50}
                     style={{ objectFit: "cover" }}
@@ -117,24 +118,38 @@ const Index = ({ orders, products }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const myCookie = context.req?.cookies || "";
+  //! Using cookies
+  // const myCookie = context.req?.cookies || "";
 
-  if (myCookie.token !== process.env.TOKEN) {
+  // if (myCookie.token !== process.env.TOKEN) {
+  //   return {
+  //     redirect: {
+  //       destination: "/admin/login",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+
+  //! next-auth
+  const session = await getSession(context);
+  if (!session) {
     return {
       redirect: {
-        destination: "/admin/login",
+        destination: "/api/auth/signin",
         permanent: false,
       },
     };
   }
-
-  const productRes = await axios.get("http://localhost:3000/api/products");
-  const orderRes = await axios.get("http://localhost:3000/api/orders");
+  const options = {headers: { cookie: context.req.headers.cookie }};
+  const productRes = await axios.get("http://localhost:3000/api/products",options);
+  const orderRes = await axios.get("http://localhost:3000/api/orders",options);
 
   return {
     props: {
-      orders: orderRes.data,
-      products: productRes.data,
+      data: {
+        orders: orderRes.data,
+        products: productRes.data,
+      }
     },
   };
 };

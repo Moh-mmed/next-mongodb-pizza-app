@@ -6,6 +6,7 @@ import PizzaList from "../components/PizzaList";
 import styles from "../styles/Home.module.css";
 import Add from "../components/Add";
 import AddButton from "../components/AddButton";
+import { getSession } from 'next-auth/react';
 
 export default function Home({ data, admin }) {
   const [close, setClose] = useState(true);
@@ -25,12 +26,13 @@ export default function Home({ data, admin }) {
 }
 
 export const getServerSideProps = async (context) => {
-  const myCookie = context.req?.cookies || "";
-  let admin = false;
+  // const myCookie = context.req?.cookies || "";
+  // let admin = false;
   
-  if (myCookie.token === process.env.TOKEN) {
-    admin = true;
-  }
+  // if (myCookie.token === process.env.TOKEN) {
+  //   admin = true;
+  // }
+  const admin = await getSession(context);
   const res = await axios.get('http://localhost:3000/api/products')
   return {
     props: {

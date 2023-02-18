@@ -22,8 +22,8 @@
 }
 
 .desc {
-  text-align: center;
   color: #777;
+  height: 80px;
 }
 
 @media screen and (max-width: 480px) {

@@ -41,7 +41,7 @@ const Product = ({data}) => {
       <div className={styles.left}>
         <div className={styles.imgContainer}>
           <Image
-            src={`/img/${img}`}
+            src={img}
             fill
             style={{ objectFit: "contain" }}
             alt=""
